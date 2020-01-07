@@ -1,5 +1,6 @@
 package main;
 
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +19,8 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
 
     Stage stage;
-    String directoryPath;
+    String tempNazwaPliku;
+
 
    @FXML
    Button przyciskWybierz, przyciskStart;
@@ -28,6 +30,9 @@ public class MainWindowController implements Initializable {
 
    @FXML
     CheckBox metodaMieszana, metodaBezposrednia;
+
+
+
 
     public static void zamknijProgram(){
         Platform.exit();
@@ -45,6 +50,7 @@ public class MainWindowController implements Initializable {
             DirectoryChooser dc = new DirectoryChooser();
             File selectedDir = dc.showDialog(getStage());
             etykietaLokalizacji.setText(selectedDir.toString());
+
         }catch (Exception e){
 
         }
@@ -56,6 +62,7 @@ public class MainWindowController implements Initializable {
             FileChooser fc = new FileChooser();
             File selectedFile = fc.showOpenDialog(getStage());
             etykietaLokalizacji.setText(selectedFile.toString());
+            tempNazwaPliku = selectedFile.getName();
 
         }catch (Exception e){
 
@@ -64,12 +71,31 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void nowaBaza() throws FileNotFoundException {
-        MetodaBezposrednia nowaBaza = new MetodaBezposrednia();
-        nowaBaza.sciezkapliku = etykietaLokalizacji.getText().replace("\\\\", "/");
-        nowaBaza.bazaM1();
+        if (metodaBezposrednia.isSelected() && !metodaMieszana.isSelected()) {
+            // METODA PIERWSZA
+            MetodaBezposrednia nowaBaza = new MetodaBezposrednia();
+            nowaBaza.sciezkapliku = etykietaLokalizacji.getText().replace("\\\\", "/");
+            nowaBaza.bazaM1();
+        }else if (!metodaBezposrednia.isSelected() && metodaMieszana.isSelected()) {
+            //METODA DRUGA
+            MtxToCsv nowaBaza = new MtxToCsv();
+            nowaBaza.sciezkapliku = etykietaLokalizacji.getText().replace("\\\\", "/");
+            System.out.println("Zobaczmy jak nazywa sie plik: " + tempNazwaPliku);
+            nowaBaza.nazwaPliku = tempNazwaPliku.replace(".mtx", ".csv");
+            nowaBaza.bazaM2();
+        }
+    }
 
+    public void metodaBezposredniSelected(){
+        metodaMieszana.setSelected(false);
+    }
+
+    public void metodaMieszanaSelected(){
+        metodaBezposrednia.setSelected(false);
     }
 
     public Stage getStage() {return stage; }
     void setStage(Stage stage){this.stage=stage;}
+
+
 }

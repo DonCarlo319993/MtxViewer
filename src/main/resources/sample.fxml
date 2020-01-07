@@ -31,8 +31,8 @@
          </StackPane.margin>
          <children>
             <Button fx:id="przyciskWybierz" onAction="#pokazDialogWindowFile" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" text="Wybierz plik..." />
-            <CheckBox fx:id="metodaMieszana" layoutX="23.0" layoutY="85.0" mnemonicParsing="false" text="Metoda MTX - CSV - CYPHER" />
-            <CheckBox fx:id="metodaBezposrednia" layoutX="23.0" layoutY="131.0" mnemonicParsing="false" text="Metoda bezpośrednia" />
+            <CheckBox fx:id="metodaMieszana" layoutX="23.0" layoutY="85.0" mnemonicParsing="false" text="Metoda MTX - CSV - CYPHER" onAction="#metodaMieszanaSelected"/>
+            <CheckBox fx:id="metodaBezposrednia" layoutX="23.0" layoutY="131.0" mnemonicParsing="false" text="Metoda bezpośrednia" onAction="#metodaBezposredniSelected"/>
             <Line endX="461.0" layoutX="346.0" layoutY="296.0" startX="-321.0" />
             <Button fx:id="przyciskStart" onAction="#nowaBaza" layoutX="25.0" layoutY="248.0" mnemonicParsing="false" text="Start" />
             <Line endX="571.0" layoutX="266.0" startX="-266.0" />
