@@ -1,6 +1,5 @@
 package main;
 
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +11,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,9 +33,12 @@ public class MainWindowController implements Initializable {
 
 
 
-    public static void zamknijProgram(){
+    public static void zamknijProgram() throws IOException {
+        org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowaBazaGrafowa"));
+        org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowyPlikCsv"));
         Platform.exit();
         System.exit(0);
+
     }
 
     @Override
@@ -70,7 +72,7 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    public void nowaBaza() throws FileNotFoundException {
+    public void nowaBaza() throws IOException {
         if (metodaBezposrednia.isSelected() && !metodaMieszana.isSelected()) {
             // METODA PIERWSZA
             MetodaBezposrednia nowaBaza = new MetodaBezposrednia();

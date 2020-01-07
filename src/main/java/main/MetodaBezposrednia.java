@@ -1,20 +1,23 @@
 package main;
-import org.neo4j.codegen.bytecode.If;
 import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.schema.IndexDefinition;
 import org.neo4j.graphdb.schema.Schema;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 
 public class MetodaBezposrednia {
 
     public String sciezkapliku;
 
 
-    public void bazaM1 () throws FileNotFoundException {
+    public void bazaM1 () throws IOException {
+        org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowaBazaGrafowa"));
 
         File macierz = new File(sciezkapliku);
         Scanner odczyt = new Scanner(macierz);
@@ -128,6 +131,11 @@ public class MetodaBezposrednia {
 
             tx.success();
         }
+
+        graf.shutdown();
+
+
+
 
 
     }

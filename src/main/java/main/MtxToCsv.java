@@ -1,15 +1,13 @@
 package main;
 
-import org.neo4j.cypher.internal.v3_5.ast.LoadCSV;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Result;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.factory.GraphDatabaseSettings;
-import org.neo4j.index.internal.gbptree.Header;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -18,7 +16,10 @@ public class MtxToCsv {
    public String sciezkapliku;
    public String nazwaPliku;
 
-    public void bazaM2() throws FileNotFoundException {
+    public void bazaM2() throws IOException {
+
+        org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowaBazaGrafowa"));
+
         File macierz = new File(sciezkapliku);
         PrintWriter zapis = new PrintWriter("C:/MtxViewer/tymczasowyPlikCsv/"+nazwaPliku);
         Scanner odczyt = new Scanner(macierz);
@@ -64,6 +65,8 @@ public class MtxToCsv {
                             " RETURN a, b");
             tx.success();
         }
+
+        db.shutdown();
 
     }
 }

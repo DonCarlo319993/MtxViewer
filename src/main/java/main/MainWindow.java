@@ -2,13 +2,12 @@ package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import menuUtil.MenuUtilities;
+
+import java.io.IOException;
 
 public class MainWindow extends Application {
 
@@ -23,7 +22,13 @@ public class MainWindow extends Application {
 
 
         primaryStage.getIcons().add(new Image("file:src/main/community-158484_1280.png"));
-        primaryStage.setOnCloseRequest(event -> MainWindowController.zamknijProgram());
+        primaryStage.setOnCloseRequest(event -> {
+            try {
+                MainWindowController.zamknijProgram();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         primaryStage.setTitle("Projekt okno");
         primaryStage.setScene(scene);
         primaryStage.show();
