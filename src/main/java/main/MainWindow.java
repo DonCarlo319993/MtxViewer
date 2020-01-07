@@ -2,17 +2,28 @@ package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import menuUtil.MenuUtilities;
 
 public class MainWindow extends Application {
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
-        Scene scene = new Scene(root);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(this.getClass().getResource("/sample.fxml"));
+        StackPane stackPane = loader.load();
+        Scene scene = new Scene(stackPane);
+
+
+        primaryStage.getIcons().add(new Image("file:src/main/community-158484_1280.png"));
+        primaryStage.setOnCloseRequest(event -> MainWindowController.zamknijProgram());
         primaryStage.setTitle("Projekt okno");
         primaryStage.setScene(scene);
         primaryStage.show();
