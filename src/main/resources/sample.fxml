@@ -20,7 +20,7 @@
             <Insets left="40.0" top="180.0" />
          </StackPane.margin>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="226.0" text="POKAŻ GRAF" StackPane.alignment="TOP_LEFT">
+      <Button fx:id="przyciskPokazGraf" mnemonicParsing="false" prefHeight="66.0" prefWidth="226.0" text="POKAŻ GRAF" StackPane.alignment="TOP_LEFT" onAction="#funkcja">
          <StackPane.margin>
             <Insets left="40.0" top="280.0" />
          </StackPane.margin>

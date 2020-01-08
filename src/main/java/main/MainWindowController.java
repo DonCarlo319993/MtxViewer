@@ -22,7 +22,7 @@ public class MainWindowController implements Initializable {
 
 
    @FXML
-   Button przyciskWybierz, przyciskStart;
+   Button przyciskWybierz, przyciskStart, przyciskPokazGraf;
 
    @FXML
    Label etykietaLokalizacji;
@@ -33,9 +33,13 @@ public class MainWindowController implements Initializable {
 
 
 
+
+
+
+
     public static void zamknijProgram() throws IOException {
         org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowaBazaGrafowa"));
-        org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowyPlikCsv"));
+        //org.apache.commons.io.FileUtils.cleanDirectory(new File("C:/MtxViewer/tymczasowyPlikCsv"));
         Platform.exit();
         System.exit(0);
 
@@ -43,7 +47,6 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     @FXML
@@ -87,6 +90,30 @@ public class MainWindowController implements Initializable {
             nowaBaza.bazaM2();
         }
     }
+
+
+/*    public void otworzBrowser() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/browser.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage = new Stage();
+        stage.setTitle("Browser");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
+        webEngine = webView.getEngine();
+        webEngine.load("https://www.google.com");
+
+    }*/
+public void funkcja() throws IOException {
+    BrowserController browserController = new BrowserController();
+    browserController.otworzBrowser();
+}
+
+
+
+
 
     public void metodaBezposredniSelected(){
         metodaMieszana.setSelected(false);
